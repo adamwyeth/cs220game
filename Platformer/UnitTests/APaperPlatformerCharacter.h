@@ -48,6 +48,8 @@ namespace ETestInput
         Attack_Released,
         Shield_Pressed,
         Shield_Released,
+        Jump_Pressed,
+        Jump_Released
     };
 }
 
@@ -145,9 +147,18 @@ protected:
     // Handles shield start
     void OnStopShield();
     
+    //Handles jump start
+    void OnStartJump();
+    
+    bool CanJumpInternal_Implementation();
+    
 public:
     // void OnEnemyCollide(float val);
     
     // void OnItemPickup(float BoostValue, EBoostType::Type BoostType);
+    
+    //Handles jump ended
+    void Landed();
+    void OnItemPickup(float BoostValue, EBoostType::Type BoostType);
 };
 

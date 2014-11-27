@@ -33,7 +33,7 @@ APaperPlatformerCharacter::APaperPlatformerCharacter()
     StaminaAttackCost = 100.0f;
     
     //MaxJumps = 3;
-    //CurrentJumps = 0;
+    CurrentJumps = 0;
     
     // set initial battle and movement states
     //MoveState = EMoveState::Idle;
@@ -56,6 +56,12 @@ void APaperPlatformerCharacter::PlayerInput(ETestInput::Input input)
             break;
         case ETestInput::Shield_Released:
             OnStopShield();
+            break;
+        case ETestInput::Jump_Pressed:
+            OnStartJump();
+            break;
+        case ETestInput::Jump_Released:
+            Landed();
             break;
         default:
             break;
@@ -109,6 +115,27 @@ void APaperPlatformerCharacter::OnStartShield()
 void APaperPlatformerCharacter::OnStopShield()
 {
     BattleState = EBattleState::Idle;
+}
+
+void APaperPlatformerCharacter::OnStartJump()
+{
+    if (CanJumpInternal_Implementation())
+    {
+        CurrentJumps++;
+    }
+}
+
+void APaperPlatformerCharacter::Landed()
+{
+    CurrentJumps = 0;
+}
+
+bool APaperPlatformerCharacter::CanJumpInternal_Implementation()
+{
+    if (CurrentJumps < MaxJumps) {
+        return true;
+    }
+    return false;
 }
 
 void APaperPlatformerCharacter::Tick()
