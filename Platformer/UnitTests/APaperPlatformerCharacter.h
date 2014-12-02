@@ -6,12 +6,11 @@
 //  Copyright (c) 2014 EpicGames. All rights reserved.
 //
 
-#ifndef __Platformer_copy__APaperPlatformerCharacter__
-#define __Platformer_copy__APaperPlatformerCharacter__
 
-#include <stdio.h>
-#include "pickup.h"
-#endif /* defined(__Platformer_copy__APaperPlatformerCharacter__) */
+#ifndef __Platformer__APaperPlatformerCharacter__
+#define __Platformer__APaperPlatformerCharacter__
+#include "Pickup.h"
+
 
 // PaperPlatformerCharacter.h
 /**
@@ -48,8 +47,6 @@ namespace ETestInput
         Attack_Released,
         Shield_Pressed,
         Shield_Released,
-        Jump_Pressed,
-        Jump_Released
     };
 }
 
@@ -147,18 +144,9 @@ protected:
     // Handles shield start
     void OnStopShield();
     
-    //Handles jump start
-    void OnStartJump();
-    
-    bool CanJumpInternal_Implementation();
-    
 public:
     // void OnEnemyCollide(float val);
-    
-    // void OnItemPickup(float BoostValue, EBoostType::Type BoostType);
-    
-    //Handles jump ended
-    void Landed();
     void OnItemPickup(float BoostValue, EBoostType::Type BoostType);
 };
 
+#endif
